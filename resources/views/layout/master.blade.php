@@ -35,6 +35,7 @@
 			<li class="active"><a href="admin/home"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Trang chủ</a></li>
 			<li><a href="admin/product"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Sản phẩm</a></li>
 			<li><a href="admin/category"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Danh mục</a></li>
+			<li><a href="admin/user"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg>			</use></svg> Admin</a></li>
 			<li role="presentation" class="divider"></li>
 		</ul>
     </div><!--/.sidebar-->

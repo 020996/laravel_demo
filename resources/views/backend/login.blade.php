@@ -37,7 +37,8 @@
 									<input name="remember" type="checkbox" value="Remember Me">Remember Me
 								</label>
 							</div>
-							<button type="submit" class="btn btn-primary">Login</button>
+							<button style="width:100px" type="submit" class="btn btn-primary">Login</button>
+							<a style="margin-left:50px" href="login/dangky">Đăng ký?</a>
 						</fieldset>
 					  {{ csrf_field() }}
 					</form>

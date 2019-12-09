@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\user;
 
 class LoginController extends Controller
 {
@@ -23,8 +24,31 @@ class LoginController extends Controller
           return \back()->with('error','Tài khoản hoặc mật khẩu của bạn nhập chưa đúng');
        }
     }
+    public function getDangky(){
+        return \view('backend.adduser');
+    }
+    public function postDangky(Request $request){
+       $user = new user;
+       $user->name = $request->name;
+       $user->password =bcrypt($request->pass);
+       $user->email = $request->email;
+       $user->level = $request->level;
+       $user->save();
+       return redirect()->intended('login')->with('error','Tài khoản của bạn đã đăng ký thành công');
+
+    }
     public function getLogout(){
         Auth::logout();
         return \redirect()->intended('login');
+    }
+    public function getlistuser(){
+        $user = user::all();
+        return \view('backend.admin',compact('user'));
+    }
+    public function getdeleteuser($id){
+        $user = user::find($id);
+        $user->delete();
+        return back()->with('error','Tài khoản đã xóa thành công');;
+
     }
 }

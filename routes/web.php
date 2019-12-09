@@ -38,6 +38,10 @@ Route::group(['namespace'=>'Admin'],function(){
  Route::group(['prefix' => 'login','middleware'=>'Checklogin'], function () {
      Route::get('/','LoginController@getLogin');
      Route::post('/','LoginController@postLogin');
+     Route::get('dangky','LoginController@getDangky');
+     Route::post('dangky','LoginController@postDangky');
+
+
      });
  Route::get('logout','LoginController@getLogout');
  Route::group(['prefix' => 'admin','middleware'=>'Checklogout'], function () {
@@ -61,6 +65,12 @@ Route::group(['namespace'=>'Admin'],function(){
         Route::post('edit/{id}','ProductController@postEditproduct');
 
         Route::get('delete/{id}','ProductController@getDeleteproduct');
+    });
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/','LoginController@getlistuser');
+        Route::get('delete/{id}','LoginController@getdeleteuser');
+
+
     });
 });
 
