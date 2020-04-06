@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\user;
-
+use DB;
 class LoginController extends Controller
 {
     public function getlogin(){
@@ -42,8 +41,9 @@ class LoginController extends Controller
         return \redirect()->intended('login');
     }
     public function getlistuser(){
+        $alert = DB::table('detail_bill_detail')->where('status', '1')->count();
         $user = user::all();
-        return \view('backend.admin',compact('user'));
+        return \view('backend.admin',compact('user','alert'));
     }
     public function getdeleteuser($id){
         $user = user::find($id);

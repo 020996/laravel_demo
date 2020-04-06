@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Support\Facades\Route;
 /*Fontend */
 Route::get('/', 'FontendController@getHome');
 Route::get('detail/{id}/{slug}.html', 'FontendController@getdetail');
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'cart'], function () {
 Route::get('compele', 'CartController@getCompele');
 
 /* BackEND */
-Route::group(['namespace'=>'Admin'],function(){
+Route::group(['namespace'=>'admin'],function(){
  Route::group(['prefix' => 'login','middleware'=>'Checklogin'], function () {
      Route::get('/','LoginController@getLogin');
      Route::post('/','LoginController@postLogin');
@@ -69,6 +69,15 @@ Route::group(['namespace'=>'Admin'],function(){
     Route::group(['prefix' => 'user'], function () {
         Route::get('/','LoginController@getlistuser');
         Route::get('delete/{id}','LoginController@getdeleteuser');
+    });
+    Route::group(['prefix' => 'comment'], function () {
+        Route::get('/','CommentController@getlistcomment');
+        Route::get('delete/{id}','CommentController@getdeleteComment');
+    });
+    Route::group(['prefix' => 'detail'], function () {
+        Route::get('/','DetailController@getlistdetail');
+        Route::get('delete/{id}','DetailController@getdeleteDetail');
+        Route::post('updateDetail','DetailController@updateDetail');
 
 
     });

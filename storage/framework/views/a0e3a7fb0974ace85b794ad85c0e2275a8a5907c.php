@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="{{asset('')}}">
+    <base href="<?php echo e(asset('')); ?>">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -39,21 +39,21 @@
 			<div class="row">
 				<div id="logo" class="col-md-3 col-sm-12 col-xs-12">
 					<h1>
-						<a href="{{asset('/')}}"><img style="margin-top:30px;" src="img/logo.png"></a>						
+						<a href="<?php echo e(asset('/')); ?>"><img style="margin-top:30px;" src="img/logo.png"></a>						
 						<nav><a id="pull" class="btn btn-danger" href="#">
 							<i class="fa fa-bars"></i>
 						</a></nav>			
 					</h1>
 				</div>
 				<div id="search" class="col-md-7 col-sm-12 col-xs-12">
-					<form action="{{asset('seach/')}}" method="GET">
+					<form action="<?php echo e(asset('seach/')); ?>" method="GET">
 					<input type="text" name="text" placeholder="Nhập từ khóa ...">
 					<input type="submit" name="submit" value="Tìm Kiếm">
 				</form>
 				</div>
 				<div id="cart" class="col-md-2 col-sm-12 col-xs-12">
 					<a class="display" href="cart/showcart">Giỏ hàng</a>
-					<a href="#">{{Cart::getContent()->count()}}</a>				    
+					<a href="#"><?php echo e(Cart::getContent()->count()); ?></a>				    
 				</div>
 			</div>			
 		</div>
@@ -68,9 +68,9 @@
 					<nav id="menu">
 						<ul>
 							<li class="menu-item">danh mục sản phẩm</li>
-							@foreach ($cate as $item)			
-							<li class="menu-item"><a href="{{asset('category/'.$item->cate_id.'/'.$item->cate_slug.'.html')}}" title="">{{$item->cate_name}}</a></li>
-							@endforeach						
+							<?php $__currentLoopData = $cate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>			
+							<li class="menu-item"><a href="<?php echo e(asset('category/'.$item->cate_id.'/'.$item->cate_slug.'.html')); ?>" title=""><?php echo e($item->cate_name); ?></a></li>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>						
 						</ul>
 						<!-- <a href="#" id="pull">Danh mục</a> -->
 					</nav>
@@ -146,7 +146,7 @@
 							</div>
 						</div>					
                     </div>
-                    @yield('main')
+                    <?php echo $__env->yieldContent('main'); ?>
                 </div>
 			</div>
 		</div>
@@ -196,4 +196,4 @@
 	</footer>
 	<!-- endfooter -->
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\laravel_2\resources\views/layout_fontend/master.blade.php ENDPATH**/ ?>

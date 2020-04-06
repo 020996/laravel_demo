@@ -1,16 +1,15 @@
-@extends('layout_fontend.master')
-	@section('main')
+	<?php $__env->startSection('main'); ?>
 	<link rel="stylesheet" href="layout/fontend/css/cart.css">
 	<script type="text/javascript">
 	function updateCart(quantity,id){
 		var data_post={
-                    "_token":"{{csrf_token()}}",
+                    "_token":"<?php echo e(csrf_token()); ?>",
                     "id":id,
                     "quantity":quantity,
                 };
        $.ajax({
 		   type: "post",
-		   url: "{{asset('cart/update')}}",
+		   url: "<?php echo e(asset('cart/update')); ?>",
 		   data: data_post,
 		   dataType: "json",
 		   success: function (data) {
@@ -28,8 +27,8 @@
 					<div id="wrap-inner">
 						<div id="list-cart">
 							<h3 style="color:red">Giỏ hàng</h3>
-							@include('error.note')
-							@if ( Cart::getContent()->count()>0)
+							<?php echo $__env->make('error.note', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+							<?php if( Cart::getContent()->count()>0): ?>
 							<form method="POST" action="">
 								<table class="table table-bordered .table-responsive text-center">
 									<tr class="active">
@@ -40,24 +39,24 @@
 										<td width="25%">Thành tiền</td>
 										<td width="8%">Xóa</td>
 									</tr>
-									@foreach ($items as $item)
+									<?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<tr>
-										<td><img class="img-responsive" style="width:100%" src="img/{{$item->attributes->image}}"></td>
-										<td>{{$item->name}}</td>
+										<td><img class="img-responsive" style="width:100%" src="img/<?php echo e($item->attributes->image); ?>"></td>
+										<td><?php echo e($item->name); ?></td>
 										<td>
 											<div class="form-group">
-												<input class="form-control" type="number" value="{{$item->quantity}}" onchange="updateCart(this.value,{{$item->id}})">
+												<input class="form-control" type="number" value="<?php echo e($item->quantity); ?>" onchange="updateCart(this.value,<?php echo e($item->id); ?>)">
 											</div>
 										</td>
-										<td><span class="price">{{number_format("$item->price",0,",",".")}} VNĐ</span></td>
-										<td><span class="price"><span id="price{{$item->id}}">{{number_format($item->price*$item->quantity,0,",",".")}}</span> VNĐ</span></td>
-										<td><a href="cart/delete/{{$item->id}}">Xóa</a></td>
+										<td><span class="price"><?php echo e(number_format("$item->price",0,",",".")); ?> VNĐ</span></td>
+										<td><span class="price"><span id="price<?php echo e($item->id); ?>"><?php echo e(number_format($item->price*$item->quantity,0,",",".")); ?></span> VNĐ</span></td>
+										<td><a href="cart/delete/<?php echo e($item->id); ?>">Xóa</a></td>
 									</tr>
-									@endforeach
+									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</table>
 								<div class="row" id="total-price">
 									<div class="col-md-6 col-sm-12 col-xs-12">										
-											Tổng thanh toán: <span class="total-price">{{number_format(Cart::getSubTotal(),0,",",".")}}</span><span> VNĐ</span>
+											Tổng thanh toán: <span class="total-price"><?php echo e(number_format(Cart::getSubTotal(),0,",",".")); ?></span><span> VNĐ</span>
 																													
 									</div>
 									<div class="col-md-6 col-sm-12 col-xs-12">
@@ -88,12 +87,14 @@
 									<div class="form-group text-right">
 										<button type="submit" class="btn btn-default">Thực hiện đơn hàng</button>
 									</div>
-									{{ csrf_field() }}
+									<?php echo e(csrf_field()); ?>
+
 								</form>
 							</div>
-						 @else
+						 <?php else: ?>
 							<h2> Giỏ Hàng Rỗng</h2>
-						 @endif
+						 <?php endif; ?>
 						
 					</div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout_fontend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel_2\resources\views/fontend/cart.blade.php ENDPATH**/ ?>

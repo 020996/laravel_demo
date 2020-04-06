@@ -18,9 +18,9 @@
 							<div class="table-responsive">
 								<a href="admin/product/add" class="btn btn-primary">Thêm sản phẩm</a>
 								@include('error.note')
-								<table class="table table-bordered" style="margin-top:20px;">				
+								<table class="table table-bordered" style="margin-top:20px; text-align: center;">				
 									<thead>
-										<tr class="bg-primary">
+										<tr align="center" class="bg-primary">
 											<th>ID</th>
 											<th width="30%">Tên Sản phẩm</th>
 											<th>Giá sản phẩm</th>
@@ -28,7 +28,7 @@
 											<th>Danh mục</th>
 											<th>Trạng thái</th>
 											<th>Sản phẩm</th>
-											<th>Tùy chọn</th>
+											<th style="width:180px">Tùy chọn</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -45,8 +45,8 @@
 											<td> @if ($item->product_trangthai==1) còn hàng @else hết hàng @endif </td>
 											<td> @if ($item->product_spdb==1) Nổi bật @else Mới @endif </td>
 											<td>
-											<a href="admin/product/edit/{{$item->product_id}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-											<a href="admin/product/delete/{{$item->product_id}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+											<a href="admin/product/edit/{{$item->product_id}}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
+											<a href="admin/product/delete/{{$item->product_id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 											</td>
 										</tr>
 										<?php $n++;?>

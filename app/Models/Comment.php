@@ -12,6 +12,6 @@ class Comment extends Model
     protected $guarded = [];
     public function product()
     {
-        return $this->hasMany('App\Models\Product','com_product','product_id');
+        return $this->belongsTo('App\Models\Product','com_product','product_id');
     }
 }

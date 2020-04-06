@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<base href="{{asset('')}}">
+<base href="<?php echo e(asset('')); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Demo /Điện thoại shop</title>
 <link href="layout/backend/css/bootstrap.min.css" rel="stylesheet">
@@ -18,9 +18,9 @@
 				<a class="navbar-brand" href="#">Khánh Admin</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> {{Auth::user()->email}} <span class="caret"></span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?php echo e(Auth::user()->email); ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-						<li><a href="{{asset('logout')}}"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+						<li><a href="<?php echo e(asset('logout')); ?>"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -43,7 +43,7 @@
 		</ul>
     </div><!--/.sidebar-->
     <!--main-->
-    @yield('main')
+    <?php echo $__env->yieldContent('main'); ?>
     <!--endmain-->
     <script src="layout/backend/js/jquery-1.11.1.min.js"></script>
 	<script src="layout/backend/js/bootstrap.min.js"></script>
@@ -56,11 +56,11 @@
 		$(document).ready(function(e){
           $('#active1').click(function(e){
 			var data_post={
-                    "_token":"{{csrf_token()}}",
+                    "_token":"<?php echo e(csrf_token()); ?>",
                 };
 			$.ajax({
 			type: "post",
-			url: "{{asset('admin/detail/updateDetail')}}",
+			url: "<?php echo e(asset('admin/detail/updateDetail')); ?>",
 			data: data_post,
 			success: function (response) {
 			}
@@ -71,8 +71,8 @@
 	// 	 console.log(4545);
         // $.ajax({
 		// 	type: "post",
-		// 	url: "{{asset('admin/detail/updateDetail')}}",
-		// 	data: "_token":"{{csrf_token()}}",
+		// 	url: "<?php echo e(asset('admin/detail/updateDetail')); ?>",
+		// 	data: "_token":"<?php echo e(csrf_token()); ?>",
 		// 	success: function (response) {
 				
 		// 	}
@@ -100,3 +100,4 @@
 	</script>	
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\laravel_2\resources\views/layout/master.blade.php ENDPATH**/ ?>

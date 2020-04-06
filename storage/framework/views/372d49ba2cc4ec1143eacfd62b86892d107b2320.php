@@ -1,6 +1,5 @@
-
-	@extends('layout.master')
-	@section('main')
+	
+	<?php $__env->startSection('main'); ?>
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">		
 		<div class="row">
 			<div class="col-lg-12">
@@ -16,7 +15,7 @@
 							<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{ $products}}</div>
+							<div class="large"><?php echo e($products); ?></div>
 							<div class="text-muted">Sản phẩm</div>
 						</div>
 					</div>
@@ -29,7 +28,7 @@
 							<svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-						<div class="large">{{$comment}}</div>
+						<div class="large"><?php echo e($comment); ?></div>
 							<div class="text-muted">Bình luận</div>
 						</div>
 					</div>
@@ -42,7 +41,7 @@
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$user}}</div>
+							<div class="large"><?php echo e($user); ?></div>
 							<div class="text-muted">Người dùng</div>
 						</div>
 					</div>
@@ -55,7 +54,7 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{{$cate}}</div>
+							<div class="large"><?php echo e($cate); ?></div>
 							<div class="text-muted">Danh mục</div>
 						</div>
 					</div>
@@ -74,7 +73,8 @@
 			</div><!--/.col-->
 		</div><!--/.row-->
 	</div>	<!--/.main-->
-	@endsection
+	<?php $__env->stopSection(); ?>
 
 	
 		  
+<?php echo $__env->make('layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel_2\resources\views/backend/index.blade.php ENDPATH**/ ?>

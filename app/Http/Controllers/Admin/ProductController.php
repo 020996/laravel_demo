@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 use  App\Http\Requests\AddProductRequest;
 use App\Models\Product;
 use App\Models\Category;
-
+use App\Models\user;
+use DB;
 class ProductController extends Controller
 {
     //
     public function getProduct(){
+      $alert = DB::table('detail_bill_detail')->where('status', '1')->count();
          $product= Product::paginate(4);
-      return \view('backend.product',\compact('product'));
+      return \view('backend.product',\compact('product','alert'));
     }
     public function getAddproduct(){
+      $alert = DB::table('detail_bill_detail')->where('status', '1')->count();
       $cate = Category::all();
-      return \view('backend.addproduct',\compact('cate'));
+      return \view('backend.addproduct',\compact('cate','alert'));
     }
     public function postAddproduct( AddProductRequest $request){
       $product = new Product;
@@ -47,9 +50,10 @@ class ProductController extends Controller
    return \redirect()->intended('admin/product')->with("error","Thêm thành công");
     }
     public function getEditproduct($id){
+      $alert = DB::table('detail_bill_detail')->where('status', '1')->count();
       $cate = Category::all();
       $product = Product ::find($id);
-       return \view('backend.editproduct', \compact('product','cate'));
+       return \view('backend.editproduct', \compact('product','cate','alert'));
     }
     public function postEditproduct(Request $request, $id){
       $product = Product ::find($id);

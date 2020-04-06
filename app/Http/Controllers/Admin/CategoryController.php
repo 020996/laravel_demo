@@ -8,12 +8,15 @@ use App\Models\Category;
 use App\Http\Requests\AddcateRequest;
 use App\Http\Requests\EditCateRequest;
 use App\Models\Product;
+use App\Models\user;
+use DB;
 
 class CategoryController extends Controller
 {
     public function getCate(){
+      $alert = DB::table('detail_bill_detail')->where('status', '1')->count();
         $cate = Category::all();
-        return \view('backend.category',\compact('cate'));
+        return \view('backend.category',\compact('cate','alert'));
     }
     public function postCate(AddcateRequest $request){
       $category=new Category;
@@ -23,8 +26,9 @@ class CategoryController extends Controller
       return \back()->with("error","Thêm thành công");
     }
     public function getEditCate($id){
+      $alert = DB::table('detail_bill_detail')->where('status', '1')->count();
         $cate = Category::find($id);
-        return \view('backend.editcategory',compact('cate'));
+        return \view('backend.editcategory',compact('cate','alert'));
     }
     public function postEditCate(EditCateRequest $request, $id){
            $category=Category::find($id);
